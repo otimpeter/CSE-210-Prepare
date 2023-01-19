@@ -1,11 +1,73 @@
+using System;
+using System.Linq;
 
-<Project Sdk="Microsoft.NET.Sdk">
+class Scripture
+{
+    static void Main(string[] args)
+    {
+        // Store a scripture
+        string reference = "John 3:16";
+        string text = "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.";
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+        // Clear the console screen and display the complete scripture
+        Console.Clear();
+        Console.WriteLine(reference);
+        Console.WriteLine(text);
 
-</Project>
+        // Split the scripture text into an array of words
+        string[] words = text.Split(' ');
+
+        // Keep track of which words have been hidden
+        bool[] hidden = new bool[words.Length];
+
+        // Prompt the user to press the enter key or type quit
+        while (true)
+        {
+            Console.WriteLine("Press enter to hide a random word or type quit to exit:");
+            string input = Console.ReadLine();
+
+            // If the user types quit, the program should end
+            if (input.ToLower() == "quit")
+            {
+                break;
+            }
+
+            // If the user presses the enter key (without typing quit), the program should hide a few random words in the scripture
+            int hiddenWordCount = 0;
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!hidden[i])
+                {
+                    hidden[i] = true;
+                    hiddenWordCount++;
+                }
+                if (hiddenWordCount == 3)
+                {
+                    break;
+                }
+            }
+
+            // Clear the console screen and display the scripture again
+            Console.Clear();
+            Console.WriteLine(reference);
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (hidden[i])
+                {
+                    Console.Write("_ ");
+                }
+                else
+                {
+                    Console.Write(words[i] + " ");
+                }
+            }
+
+            // When all words in the scripture are hidden, the program should end
+            if (!hidden.Contains(false))
+            {
+                break;
+            }
+        }
+    }
+}
+
