@@ -116,3 +116,4 @@ class Journal
             Console.WriteLine(entry.ToString());
         }
     }
+}
