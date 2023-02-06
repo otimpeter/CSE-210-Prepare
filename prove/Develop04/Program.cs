@@ -1,94 +1,90 @@
 using System;
-class Activity
+using System.Threading;
+// MINDFULL Activity
+namespace MindfulnessActivities
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello Develop04 World!");
-    }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public int Duration { get; set; }
-
-    public virtual void Start()
-    {
-        Console.WriteLine("Starting activity: " + Name);
-        Console.WriteLine("Description: " + Description);
-        Console.Write("Enter duration (in seconds): ");
-        Duration = int.Parse(Console.ReadLine());
-    }
-
-    public virtual void End()
-    {
-        Console.WriteLine("You have completed the " + Name + " activity for " + Duration + " seconds.");
-    }
-}
-
-class BreathingActivity : Activity
-{
-    public override void Start()
-    {
-        base.Start();
-        Console.WriteLine("Preparing to begin...");
-        Thread.Sleep(30);
-        for (int i = Duration; i > 0; i--)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Breathe in...");
-            Thread.Sleep(10);
-            Console.WriteLine("Breathe out...");
-            Thread.Sleep(10);
+            int userChoice;
+            int duration;
+            int counter = 0;
+            string input;
+            List<string> items = new List<string>();
+
+            Console.WriteLine("Welcome to Mindfulness Activities!");
+            Console.WriteLine("Choose an activity: ");
+            Console.WriteLine("1. Breathing");
+            Console.WriteLine("2. Listing");
+
+            input = Console.ReadLine();
+            userChoice = Convert.ToInt32(input);
+
+            Console.WriteLine("Enter the duration of the activity in seconds: ");
+            input = Console.ReadLine();
+            duration = Convert.ToInt32(input);
+
+            Console.WriteLine("Prepare to begin. The activity will start in 3 seconds...");
+            Thread.Sleep(3000);
+
+            switch (userChoice)
+            {
+                case 1:
+                    Console.WriteLine("Breathing Activity");
+                    Console.WriteLine("This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
+
+                    for (int i = duration; i > 0; i--)
+                    {
+                        Console.WriteLine("Breathe in... ");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Breathe out... ");
+                        Thread.Sleep(1000);
+                    }
+
+                    Console.WriteLine("You have done a good job! You completed the Breathing Activity for " + duration + " seconds.");
+                    Thread.Sleep(3000);
+                    Console.WriteLine("The activity has ended.");
+                    break;
+
+                case 2:
+                    Console.WriteLine("Listing Activity");
+                    Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+
+                    string[] prompts = {
+                        "Who are people that you appreciate?",
+                        "What are personal strengths of yours?",
+                        "Who are people that you have helped this week?",
+                        "When have you felt the Holy Ghost this month?",
+                        "Who are some of your personal heroes?"
+                    };
+
+                    Random rnd = new Random();
+                    int randomPrompt = rnd.Next(0, prompts.Length);
+
+                    Console.WriteLine(prompts[randomPrompt]);
+                    Console.WriteLine("Start listing items in 3 seconds...");
+                    Thread.Sleep(3000);
+
+                    for (int i = duration; i > 0; i--)
+                    {
+                        Console.WriteLine("Enter an item: ");
+                        input = Console.ReadLine();
+                        items.Add(input);
+                        counter++;
+                    }
+
+                    Console.WriteLine("You have done a good job! You listed " + counter + " items in " + duration + " seconds.");
+                    Thread.Sleep(3000);
+                    Console.WriteLine("The activity has ended.");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+
+            Console.ReadLine();
         }
     }
 }
-
-class ReflectionActivity : Activity
-{
-    private List<string> prompts = new List<string>()
-    {
-        "Think of a time when you stood up for someone else.",
-        "Think of a time when you did something really difficult.",
-       
-       
-    };
-
-    private List<string> questions = new List<string>()
-    {
-        "Why was this experience meaningful to you?",
-        "Have you ever done anything like this before?",
-        "How did you get started?",
-        "How did you feel when it was complete?",
-        "What made this time different than other times when you were not as successful?",
-    };
-
-    public override void Start()
-    {
-        base.Start();
-        Console.WriteLine("Preparing to begin...");
-        Thread.Sleep(30);
-        Random rnd = new Random();
-        int remainingTime = Duration;
-        while (remainingTime > 0)
-        {
-            int questionIndex = rnd.Next(questions.Count);
-            Console.WriteLine(prompts[questionIndex]);
-            Thread.Sleep(30);
-            Console.WriteLine(questions[questionIndex]);
-            remainingTime -= 5;
-            Thread.Sleep(20);
-        }
-    }
-}
-
-class ListingActivity : Activity
-{    private List<string> prompts = new List<string>()
-    {
-        "Who are people that you appreciate?",
-        "What are personal strengths of yours?",
-        "Who are people that you have helped this week?",
-        "When have you felt the Holy Ghost this month?",
-        "Who are some of your personal heroes?"
-    };
-
-    public
-
-};
-
