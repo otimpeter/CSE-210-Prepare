@@ -18,7 +18,7 @@ and print out all the video information and comments. In the Main method,
 I create three videos and add comments to them, then print out all the video information using a foreach loop.
 
 
-foundation 4 : Program 4: Polymorphism with Exercise Tracking
+foundation 4 :Polymorphism with Exercise Tracking
 Fitness Tracker App
 This program allows users to track their exercise activities at a local fitness center. It includes facilities for running, stationary bicycles, and swimming in the lap pool.
 
@@ -35,6 +35,19 @@ Add new cycling activity
 Add new swimming activity
 Get summary of all activities
 Exit
+
+Event Planning Program
+This program is designed to help an event planning company track and market different types of events. The program allows the company to create events of three types: Lectures, Receptions, and Outdoor Gatherings.
+
+Features
+Each event has a Title, Description, Date, Time, and Address
+The program supports the generation of three different types of messages for each event:
+Standard Details: Lists the title, description, date, time, and address
+Full Details: Lists all of the above, plus type of event and information specific to that event type. For lectures, this includes the speaker name and capacity. For receptions this includes an email for RSVP. For outdoor gatherings, this includes a statement of the weather.
+Short Description: Lists the type of event, title, and the date.
+The program uses inheritance to avoid duplicating shared attributes and methods.
+An Address class is used to encapsulate the address information.
+The program follows the principles of encapsulation, ensuring that each member variable is private.
 
 *Encapsulation with Online Ordering*
 This is basic product ordering system for an online store. It uses encapsulation to protect the data and to provide controlled access to it through the public interfaces of various classes.
