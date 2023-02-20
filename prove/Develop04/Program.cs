@@ -3,7 +3,7 @@ using System.Threading;
 // MINDFULL Activity
 namespace MindfulnessActivities
 {
-    class Program
+    class Mindfulness
     {
         static void Main(string[] args)
         {
